@@ -1,0 +1,20 @@
+[submodule "CrowdMapper"]
+	path = CrowdMapper
+	url = git@github.com:mizzao/CrowdMapper.git
+	branch = master
+[submodule "meteor-autocomplete"]
+	path = meteor-autocomplete
+	url = git@github.com:mizzao/meteor-autocomplete.git
+	branch = master
+[submodule "meteor-sharejs"]
+	path = meteor-sharejs
+	url = git@github.com:mizzao/meteor-sharejs.git
+	branch = master
+[submodule "turkserver-meteor"]
+	path = turkserver-meteor
+	url = git@github.com:HarvardEconCS/turkserver-meteor.git
+	branch = master
+[submodule "meteor-tutorials"]
+	path = meteor-tutorials
+	url = git@github.com:mizzao/meteor-tutorials.git
+	branch = master
