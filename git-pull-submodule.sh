@@ -1,2 +1,2 @@
 #!/bin/bash
-git submodule foreach --recursive git pull
+git submodule foreach --recursive "git pull || true"
