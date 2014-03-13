@@ -22,3 +22,7 @@
 	path = meteor-timesync
 	url = git@github.com:mizzao/meteor-timesync.git
 	branch = master
+[submodule "meteor-user-status"]
+	path = meteor-user-status
+	url = git@github.com:mizzao/meteor-user-status.git
+	branch = master
