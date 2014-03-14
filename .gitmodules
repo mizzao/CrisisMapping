@@ -26,3 +26,7 @@
 	path = meteor-user-status
 	url = git@github.com:mizzao/meteor-user-status.git
 	branch = master
+[submodule "meteor-collection-hooks"]
+	path = meteor-collection-hooks
+	url = git@github.com:matb33/meteor-collection-hooks.git
+	branch = master
