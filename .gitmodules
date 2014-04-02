@@ -30,3 +30,7 @@
 	path = meteor-collection-hooks
 	url = git@github.com:matb33/meteor-collection-hooks.git
 	branch = master
+[submodule "meteor-partitioner"]
+	path = meteor-partitioner
+	url = git@github.com:mizzao/meteor-partitioner.git
+	branch = master
