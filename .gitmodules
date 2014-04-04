@@ -34,3 +34,7 @@
 	path = meteor-partitioner
 	url = git@github.com:mizzao/meteor-partitioner.git
 	branch = master
+[submodule "meteor-bootboxjs"]
+	path = meteor-bootboxjs
+	url = git@github.com:mizzao/meteor-bootboxjs.git
+	branch = master
