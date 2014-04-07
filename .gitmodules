@@ -36,5 +36,5 @@
 	branch = master
 [submodule "meteor-bootboxjs"]
 	path = meteor-bootboxjs
-	url = git@github.com:mizzao/meteor-bootboxjs.git
+	url = git@github.com:TimHeckel/meteor-bootboxjs.git
 	branch = master
