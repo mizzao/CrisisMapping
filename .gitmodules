@@ -38,3 +38,7 @@
 	path = meteor-bootboxjs
 	url = git@github.com:TimHeckel/meteor-bootboxjs.git
 	branch = master
+[submodule "meteor-x-editable-bootstrap"]
+	path = meteor-x-editable-bootstrap
+	url = git@github.com:mizzao/meteor-x-editable-bootstrap.git
+	branch = master
