@@ -3,34 +3,49 @@
 	url = git@github.com:mizzao/CrowdMapper.git
 	branch = master
 [submodule "meteor-autocomplete"]
-	path = meteor-autocomplete
+	path = mizzao:autocomplete
 	url = git@github.com:mizzao/meteor-autocomplete.git
 	branch = master
 [submodule "meteor-sharejs"]
-	path = meteor-sharejs
+	path = mizzao:sharejs
 	url = git@github.com:mizzao/meteor-sharejs.git
 	branch = master
 [submodule "turkserver-meteor"]
-	path = turkserver-meteor
+	path = mizzao:turkserver
 	url = git@github.com:HarvardEconCS/turkserver-meteor.git
 	branch = master
 [submodule "meteor-tutorials"]
-	path = meteor-tutorials
+	path = mizzao:tutorials
 	url = git@github.com:mizzao/meteor-tutorials.git
 	branch = master
 [submodule "meteor-timesync"]
-	path = meteor-timesync
+	path = mizzao:timesync
 	url = git@github.com:mizzao/meteor-timesync.git
 	branch = master
 [submodule "meteor-user-status"]
-	path = meteor-user-status
+	path = mizzao:user-status
 	url = git@github.com:mizzao/meteor-user-status.git
 	branch = master
 [submodule "meteor-collection-hooks"]
-	path = meteor-collection-hooks
+	path = matb33:collection-hooks
 	url = git@github.com:matb33/meteor-collection-hooks.git
 	branch = master
 [submodule "meteor-partitioner"]
-	path = meteor-partitioner
+	path = mizzao:partitioner
 	url = git@github.com:mizzao/meteor-partitioner.git
 	branch = master
+[submodule "meteor-bootstrap-3"]
+	path = mrt:bootstrap-3
+	url = git@github.com:mizzao/meteor-bootstrap-3.git
+[submodule "meteor-jqueryui"]
+	path = mizzao:jquery-ui
+	url = git@github.com:mizzao/meteor-jqueryui.git
+[submodule "meteor-moment"]
+	path = mrt:moment
+	url = git@github.com:mizzao/meteor-moment.git
+[submodule "meteor-openlayers"]
+	path = mizzao:openlayers
+	url = git@github.com:mizzao/meteor-openlayers.git
+[submodule "meteor-x-editable-bootstrap"]
+	path = natestrauser:x-editable-bootstrap
+	url = git@github.com:mizzao/meteor-x-editable-bootstrap.git
