@@ -35,7 +35,7 @@
 	url = git@github.com:mizzao/meteor-partitioner.git
 	branch = master
 [submodule "meteor-bootstrap-3"]
-	path = mrt:bootstrap-3
+	path = mizzao:bootstrap-3
 	url = git@github.com:mizzao/meteor-bootstrap-3.git
 [submodule "meteor-jqueryui"]
 	path = mizzao:jquery-ui
