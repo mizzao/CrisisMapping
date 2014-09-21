@@ -49,3 +49,7 @@
 [submodule "meteor-x-editable-bootstrap"]
 	path = natestrauser:x-editable-bootstrap
 	url = git@github.com:mizzao/meteor-x-editable-bootstrap.git
+[submodule "mizzao:build-fetcher"]
+	path = mizzao:build-fetcher
+	url = git@github.com:mizzao/meteor-build-fetcher.git
+	branch = master
