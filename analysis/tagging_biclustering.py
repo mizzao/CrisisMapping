@@ -3,6 +3,7 @@
 # Script to use scikit-learn for spectral co-clustering. Run this
 # after generating the analysis datasets from experimental data
 
+import sys
 import numpy as np
 from matplotlib import pyplot as plt
 import pymongo
@@ -17,8 +18,12 @@ db = client.meteor
 events = db['analysis.events']
 datastream = db['analysis.datastream']
 
+# Ignore events with too much stuff, no signal
+skip_thresh = int(sys.argv[2]) if len(sys.argv) > 2 else None
 # We expect about this many events from Pablo
-n_clusters = 100
+n_clusters = int(sys.argv[1]) if len(sys.argv) > 1 else 100 
+
+identifier = "i%d_c%d" % (skip_thresh, n_clusters) if skip_thresh else "c%d" % (n_clusters)
 
 # Build array of relationships between events and tweets
 
@@ -41,7 +46,7 @@ for j, event in enumerate(events.find()):
         continue
     
     # TODO hack: skip very long lists
-    if len(sources) > 50:
+    if skip_thresh and len(sources) > skip_thresh:
         continue
 
     # All events have numbered tweets
@@ -51,6 +56,8 @@ for j, event in enumerate(events.find()):
 plt.matshow(data, cmap=plt.cm.Blues)
 plt.title("Original dataset")
 
+plt.savefig('%s_original.png' % (identifier), bbox_inches='tight')
+
 model = SpectralCoclustering(n_clusters=n_clusters, random_state=0)
 model.fit(data)
 
@@ -59,6 +66,8 @@ fit_data = fit_data[:, np.argsort(model.column_labels_)]
 
 plt.matshow(fit_data, cmap=plt.cm.Blues)
 plt.title("After biclustering; rearranged")
+
+plt.savefig('%s_clustered.png' % (identifier), bbox_inches='tight')
 
 avg_data = np.copy(data)
 
@@ -79,6 +88,8 @@ avg_data = avg_data[np.argsort(model.row_labels_)]
 avg_data = avg_data[:, np.argsort(model.column_labels_)]
 
 plt.matshow(avg_data, cmap=plt.cm.Blues)
-plt.title("Cluster intensity of rearranged data")
+plt.title("Average cluster intensity")
 
-plt.show()
+plt.savefig('%s_averaged.png' % (identifier), bbox_inches='tight')
+
+# plt.show()
