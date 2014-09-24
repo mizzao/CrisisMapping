@@ -4,6 +4,27 @@
 # after generating the analysis datasets from experimental data
 
 import sys
+import argparse
+
+parser = argparse.ArgumentParser(description='Run co-clustering from local database.')
+
+# We expect about this many events from Pablo
+parser.add_argument('--clusters', '-c', type=int, default=100,
+                   help='number of clusters')
+
+# Ignore events with too much stuff, no signal
+parser.add_argument('--threshold', '-t', type=int, default=None,
+                   help='threshold above which events are ignored')
+
+# Whether to write the clusters back to the database
+parser.add_argument('--write', '-w', action='store_const', const=True, default=False,
+                   help='write results to db')
+
+args = parser.parse_args()
+
+skip_thresh = args.threshold
+n_clusters = args.clusters
+
 import numpy as np
 from matplotlib import pyplot as plt
 import pymongo
@@ -18,11 +39,6 @@ db = client.meteor
 events = db['analysis.events']
 datastream = db['analysis.datastream']
 
-# Ignore events with too much stuff, no signal
-skip_thresh = int(sys.argv[2]) if len(sys.argv) > 2 else None
-# We expect about this many events from Pablo
-n_clusters = int(sys.argv[1]) if len(sys.argv) > 1 else 100 
-
 identifier = "i%d_c%d" % (skip_thresh, n_clusters) if skip_thresh else "c%d" % (n_clusters)
 
 # Build array of relationships between events and tweets
@@ -35,11 +51,14 @@ shape = (n_rows, n_cols)
 data = np.ones(shape, dtype=np.float64) * 0.001
 
 # Map tweets to a contiguous list, for now
+data_list = list(datastream.find().sort('num', pymongo.ASCENDING))
+events_list = list(events.find())
+
 row_lookup = {}
-for i, tweet in enumerate(datastream.find().sort('num', pymongo.ASCENDING)):
+for i, tweet in enumerate(data_list):
     row_lookup[tweet['num']] = i
 
-for j, event in enumerate(events.find()):
+for j, event in enumerate(events_list):
     sources = event['sources']    
     # Skip empty lists
     if not sources:
@@ -91,5 +110,25 @@ plt.matshow(avg_data, cmap=plt.cm.Blues)
 plt.title("Average cluster intensity")
 
 plt.savefig('%s_averaged.png' % (identifier), bbox_inches='tight')
+
+if args.write:
+    print "Writing clusters to database."
+    # No need to clean up here, just overwrite by _id.
+    for c in range(n_clusters):
+        (nr, nc) = model.get_shape(c)
+        (row_ind, col_ind) = model.get_indices(c)
+        
+        cluster_val = None
+        if nr > 25 or nc > 50:
+            print "Nulling cluster %d: shape (%d, %d)" % (c, nr, nc)
+        else:
+            cluster_val = c
+            
+        for ri in row_ind:
+            data_list[ri]['cluster'] = cluster_val
+            datastream.save(data_list[ri])
+        for ci in col_ind:
+            events_list[ci]['cluster'] = cluster_val
+            events.save(events_list[ci])            
 
 # plt.show()
