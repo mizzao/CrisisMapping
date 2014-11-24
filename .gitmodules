@@ -53,3 +53,6 @@
 	path = mizzao:build-fetcher
 	url = git@github.com:mizzao/meteor-build-fetcher.git
 	branch = master
+[submodule "mizzao:animated-each"]
+	path = mizzao:animated-each
+	url = git@github.com:mizzao/meteor-animated-each.git
